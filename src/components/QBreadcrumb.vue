@@ -6,7 +6,8 @@
     </span>
     <span class="seperator">/</span>
     <span class="breadcrumb-link-active"
-      >edit invoice ({{ invoice.number }})</span
+      >edit invoice (<b>{{ invoice.number }}</b
+      >)</span
     >
   </nav>
 </template>
