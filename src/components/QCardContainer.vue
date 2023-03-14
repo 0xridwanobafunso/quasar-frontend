@@ -1,13 +1,18 @@
 <template>
-  <div class="card-container"></div>
+  <div class="card-container">
+    <q-company-info></q-company-info>
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import QCompanyInfo from "./QCompanyInfo.vue";
 
 export default defineComponent({
   name: "QCardContainer",
-  components: {},
+  components: {
+    QCompanyInfo,
+  },
   setup() {
     return {};
   },
