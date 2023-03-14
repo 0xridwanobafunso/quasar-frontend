@@ -8,13 +8,17 @@
         <td class="table-head-item">Tax</td>
         <td class="table-head-item">Line Total</td>
       </tr>
-      <tr class="table-body-row">
+      <tr
+        class="table-body-row"
+        v-for="item in invoice.items"
+        :key="item.item_name"
+      >
         <td class="table-body-item">
           <div class="form-group">
             <input
               type="text"
               class="form-input form-lg"
-              value="Payment Project - Monlight Mobile Design"
+              :value="item.item_name"
               readonly
             />
           </div>
@@ -23,7 +27,8 @@
               type="text"
               class="form-input form-lg"
               placeholder="Description"
-              value=""
+              :value="item.item_desc"
+              readonly
             />
           </div>
         </td>
@@ -32,17 +37,9 @@
             <input
               type="text"
               class="form-input form-xs"
-              value="120"
+              :value="item.item_hrs"
               readonly
             />
-          </div>
-        </td>
-        <td class="table-body-item">
-          <div class="form-group">
-            <div class="form-icon-container form-sm">
-              <span class="form-icon">$</span>
-              <input type="text" class="form-input form-inner" value="40.00" />
-            </div>
           </div>
         </td>
         <td class="table-body-item">
@@ -52,8 +49,7 @@
               <input
                 type="text"
                 class="form-input form-inner"
-                style="color: #ccc"
-                value="00.00"
+                :value="item.item_rate_per_hr"
                 readonly
               />
             </div>
@@ -66,7 +62,22 @@
               <input
                 type="text"
                 class="form-input form-inner"
-                value="4,800.00"
+                style="color: #ccc"
+                :value="item.tax"
+                readonly
+              />
+            </div>
+          </div>
+        </td>
+        <td class="table-body-item">
+          <div class="form-group">
+            <div class="form-icon-container form-sm">
+              <span class="form-icon">$</span>
+              <input
+                type="text"
+                class="form-input form-inner"
+                :value="item.total"
+                readonly
               />
             </div>
           </div>
@@ -78,13 +89,22 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "QTable",
-  components: {},
+  beforeMount: async () => {
+    const store = useStore();
+
+    store.dispatch("getInvoiceFromMockDB");
+  },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      invoice: computed(() => store.getters.invoice),
+    };
   },
 });
 </script>
