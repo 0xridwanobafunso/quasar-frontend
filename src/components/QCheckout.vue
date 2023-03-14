@@ -18,15 +18,17 @@
         <div style="margin-top: -10px">
           <p>
             <span class="checkout-text-1">Account Name:</span>
-            <span class="checkout-text-2"> Barley Vallendito</span>
+            <span class="checkout-text-2"> {{ invoice.payment_name }}</span>
           </p>
           <p>
             <span class="checkout-text-1">Account Number:</span>
-            <span class="checkout-text-2"> 9700 0918 197</span>
+            <span class="checkout-text-2"> {{ invoice.payment_number }}</span>
           </p>
           <p>
             <span class="checkout-text-1">Routing Number:</span>
-            <span class="checkout-text-2"> 73827275</span>
+            <span class="checkout-text-2">
+              {{ invoice.payment_routing_number }}</span
+            >
           </p>
         </div>
       </div>
@@ -42,11 +44,13 @@
           <p class="checkout-text-1" style="margin-top: 50px">Total Amount</p>
         </div>
         <div class="info-right-container-half" style="text-align: right">
-          <p class="info-right-text-2">$ 4,800.00</p>
-          <p class="info-right-text-2">$ 0.00</p>
-          <p class="info-right-text-2">$ 0.00</p>
+          <p class="info-right-text-2">$ {{ invoice.payment_total }}</p>
+          <p class="info-right-text-2">$ {{ invoice.payment_discount }}</p>
+          <p class="info-right-text-2">$ {{ invoice.payment_tax }}</p>
 
-          <p class="info-right-text-2" style="margin-top: 50px">$ 4,800.00</p>
+          <p class="info-right-text-2" style="margin-top: 50px">
+            $ {{ invoice.payment_total }}
+          </p>
         </div>
       </div>
     </div>
@@ -54,13 +58,22 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "QCheckout",
-  components: {},
+  beforeMount: async () => {
+    const store = useStore();
+
+    store.dispatch("getInvoiceFromMockDB");
+  },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      invoice: computed(() => store.getters.invoice),
+    };
   },
 });
 </script>
@@ -78,6 +91,7 @@ export default defineComponent({
 }
 
 .checkout-text-2 {
+  margin-left: 5px;
   font-weight: 600;
   color: #111827;
 }
