@@ -63,6 +63,7 @@ export default defineComponent({
 
 .info-left-container-2 {
   margin-top: 1rem;
+  margin-left: 0;
 }
 
 .info-left-text-1 {
@@ -121,9 +122,9 @@ export default defineComponent({
   }
 
   .info-left-container-2 {
-    margin-left: 1rem;
-    margin-right: 1rem;
     margin-top: 0;
+    margin-right: 1rem;
+    margin-left: 0;
   }
 }
 </style>
