@@ -2,6 +2,8 @@
   <div class="card-container">
     <q-company-info></q-company-info>
     <q-invoice-card></q-invoice-card>
+    <q-table-filter></q-table-filter>
+    <q-table></q-table>
   </div>
 </template>
 
@@ -9,12 +11,16 @@
 import { defineComponent } from "vue";
 import QCompanyInfo from "./QCompanyInfo.vue";
 import QInvoiceCard from "./QInvoiceCard.vue";
+import QTableFilter from "./QTableFilter.vue";
+import QTable from "./QTable.vue";
 
 export default defineComponent({
   name: "QCardContainer",
   components: {
     QCompanyInfo,
     QInvoiceCard,
+    QTableFilter,
+    QTable,
   },
   setup() {
     return {};
