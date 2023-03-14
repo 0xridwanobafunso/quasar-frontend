@@ -5,18 +5,31 @@
       <a>Invoices</a>
     </span>
     <span class="seperator">/</span>
-    <span class="breadcrumb-link-active">edit invoice (INV-2022-010)</span>
+    <span class="breadcrumb-link-active"
+      >edit invoice ({{ invoice.number }})</span
+    >
   </nav>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "QBreadcrumb",
   components: {},
+  beforeMount: async () => {
+    const store = useStore();
+
+    store.dispatch("getInvoiceFromMockDB");
+  },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      invoice: computed(() => store.getters.invoice),
+    };
   },
 });
 </script>
