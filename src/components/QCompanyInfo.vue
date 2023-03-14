@@ -4,28 +4,36 @@
       <div class="info-left-container">
         <span class="info-left-logo">D</span>
         <div class="info-left-container-2">
-          <p class="info-left-text-1">Dipa Inhouse</p>
-          <p class="info-left-text-2">hello@dipainhouse.com</p>
+          <p class="info-left-text-1">{{ company.name }}</p>
+          <p class="info-left-text-2">{{ company.email }}</p>
         </div>
       </div>
     </div>
     <div class="info-right">
-      <p>Ijen Boulevard Street 101</p>
-      <p>Malang City, 65115</p>
-      <p>East Java, Indonesia</p>
+      <p>{{ company.street }}</p>
+      <p>{{ company.city + " " + company.postal_code }}</p>
+      <p>{{ company.country }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import axios from "axios";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "QCompanyInfo",
-  components: {},
+  beforeMount: async () => {
+    const store = useStore();
+
+    store.dispatch("getCompanyFromMockDB");
+  },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      company: computed(() => store.getters.company),
+    };
   },
 });
 </script>

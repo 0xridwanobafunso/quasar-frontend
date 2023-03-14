@@ -3,27 +3,41 @@
     <img class="image-card" src="/images/bg_invoice_card.PNG" alt="" />
     <div class="image-top-left">
       <p style="font-weight: bold">Invoice Number</p>
-      <p>INV-2022-010</p>
-      <p><span style="font-weight: bold">Issued Date</span>: 11 Jan 2020</p>
-      <p><span style="font-weight: bold">Due Date</span>: 11 Jan 2020</p>
+      <p>{{ invoice.number }}</p>
+      <p>
+        <span style="font-weight: bold">Issued Date</span>:
+        {{ invoice.issued_date }}
+      </p>
+      <p>
+        <span style="font-weight: bold">Due Date</span>: {{ invoice.due_date }}
+      </p>
     </div>
     <div class="image-top-right">
       <p style="font-weight: bold">Billed to</p>
-      <p>Zoky Grizzly</p>
-      <p>Moonlight Agency LTD</p>
-      <p>New York, USA</p>
+      <p>{{ invoice.recipient_name }}</p>
+      <p>{{ invoice.recipient_company }}</p>
+      <p>{{ invoice.recipient_address }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "QInvoiceCard",
-  components: {},
+  beforeMount: async () => {
+    const store = useStore();
+
+    store.dispatch("getInvoiceFromMockDB");
+  },
   setup() {
-    return {};
+    const store = useStore();
+
+    return {
+      invoice: computed(() => store.getters.invoice),
+    };
   },
 });
 </script>
