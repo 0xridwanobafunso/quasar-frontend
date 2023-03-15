@@ -70,18 +70,20 @@
           </div>
         </td>
         <td class="table-body-item">
-          <div class="form-group">
-            <div class="form-icon-container form-sm">
-              <span class="form-icon">$</span>
-              <input
-                type="text"
-                class="form-input form-inner"
-                :value="item.total"
-                readonly
-              />
+          <div style="display: flex">
+            <div class="form-group">
+              <div class="form-icon-container form-sm">
+                <span class="form-icon">$</span>
+                <input
+                  type="text"
+                  class="form-input form-inner"
+                  :value="item.total"
+                  readonly
+                />
+              </div>
             </div>
+            <span class="table-plus-icon">+</span>
           </div>
-          <!-- <span class="table-plus-icon">+</span> -->
         </td>
       </tr>
     </table>
@@ -212,10 +214,12 @@ export default defineComponent({
 .table-plus-icon {
   background-color: #5b5097;
   color: #fff;
-  margin-top: -1px;
-  margin-left: 10px;
-  padding: 0.1rem 0.4rem;
-  border-radius: 9999px;
+  margin: auto 0 auto 20px;
+  padding: 4px 9px;
+  cursor: pointer;
+  border: 1px solid#5b5097;
+  border-radius: 999px;
+  height: 30px;
   font-weight: bold;
 }
 </style>
