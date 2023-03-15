@@ -82,7 +82,7 @@
                 />
               </div>
             </div>
-            <span class="table-plus-icon">+</span>
+            <button class="table-plus-icon">+</button>
           </div>
         </td>
       </tr>
