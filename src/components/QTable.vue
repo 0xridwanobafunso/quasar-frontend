@@ -49,6 +49,7 @@
               <input
                 type="text"
                 class="form-input form-inner"
+                style="border: none !important"
                 :value="item.item_rate_per_hr"
                 readonly
               />
@@ -62,7 +63,7 @@
               <input
                 type="text"
                 class="form-input form-inner"
-                style="color: #ccc"
+                style="border: none !important; color: #ccc"
                 :value="item.tax"
                 readonly
               />
@@ -77,12 +78,13 @@
                 <input
                   type="text"
                   class="form-input form-inner"
+                  style="border: none !important"
                   :value="item.total"
                   readonly
                 />
               </div>
             </div>
-            <button class="table-plus-icon">+</button>
+            <span class="table-plus-icon">+</span>
           </div>
         </td>
       </tr>
@@ -167,7 +169,7 @@ export default defineComponent({
 }
 
 .form-input {
-  background-color: #f3f4f6;
+  background-color: #fcfcfc;
   border: 1px solid #f3f4f6;
   border-radius: 8px;
   padding: 10px 12px;
@@ -176,7 +178,7 @@ export default defineComponent({
 }
 
 .form-icon-container {
-  background-color: #f3f4f6;
+  background-color: #fcfcfc;
   border: 1px solid #f3f4f6;
   border-radius: 8px;
   padding: 0px 12px;
